@@ -21,8 +21,8 @@ price REAL)
 dp_cursor.execute("""
 CREATE TABLE IF NOT EXISTS orders(
 id INTEGER PRIMARY KEY,
-product_id, INTEGER ,
-user_id, INTEGER)
+product_id INTEGER ,
+user_id INTEGER)
 """)
 
 dp_cursor.execute("""
@@ -75,6 +75,17 @@ def read_users():
     dp_cursor.execute("""
         SELECT * FORM users
          """)
+
+def update_users():
+    dp_cursor.execute("""
+        UPDATE users SET first_name = 'Jon', last_name = 'Doe' WHERE id=1
+    """)
+
+def delete_users():
+    dp_cursor.execute("""
+        DELETE FROM users WHERE id=1
+    """)
+
 
 # dp_cursor.execute("SELECT * FORM users")
 
