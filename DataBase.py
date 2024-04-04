@@ -45,6 +45,39 @@ dp_cursor.execute("""
 
 """)
 
+dp_cursor.execute("""
+    DROP TABLE orders
+""")
+
+def alter_users():
+    dp_cursor.execute("""
+    ALTER TABLE  users ADD COLUMN age INTEGER DEFAULT 10
+    """)
+    dp_cursor.execute("""
+    ALTER TABLE users RENAME yosh to age
+    
+    """)
+
+
+def insert_product(title, price):
+    dp_cursor.execute("""
+    INSERT INTO product(title, price)
+    VALUES (?, ?)""", (title, price))
+
+
+def insert_orders(product_id, user_id):
+    dp_cursor.execute("""
+    INSERT INTO orders (prduct_id, user_id)
+    VALUES(?, ?)""", (product_id, user_id))
+
+
+def read_users():
+    dp_cursor.execute("""
+        SELECT * FORM users
+         """)
+
+# dp_cursor.execute("SELECT * FORM users")
+
 dp_connect.commit()
 
 dp_connect.close()
